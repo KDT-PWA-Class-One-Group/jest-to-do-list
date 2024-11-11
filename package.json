@@ -1,25 +1,38 @@
 {
-  "name": "letsgo",
-  "version": "1.0.0",
-  "description": "to do list generate with using jest (TDD)",
-  "main": "index.js",
+  "name": "jest-to-do-list",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
   "scripts": {
-    "test": "jest"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KDT-PWA-Class-One-Group/jest-to-do-list.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "keywords": [
-    "jest"
-  ],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KDT-PWA-Class-One-Group/jest-to-do-list/issues"
-  },
-  "homepage": "https://github.com/KDT-PWA-Class-One-Group/jest-to-do-list#readme",
-  "devDependencies": {
-    "jest": "^29.7.0"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
