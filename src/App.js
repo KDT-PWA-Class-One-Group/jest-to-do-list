@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Input from './components/Input';
 
-function App() {
+const App = () => {
+  const handleNewTodo = (newTodo) => {
+    console.log('새로운 할 일:', newTodo);
+    // 추가 작업: 예를 들어, 새로운 할 일을 상태에 추가하거나 API 호출
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Input onSubmit={handleNewTodo} />
     </div>
   );
-}
+};
 
 export default App;
