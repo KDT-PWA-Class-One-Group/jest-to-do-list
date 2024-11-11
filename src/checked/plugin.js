@@ -1,4 +1,4 @@
-class CheckedPlugin {
+export class CheckedPlugin {
   constructor(database) {
     this.database = new Set(database);
   }
