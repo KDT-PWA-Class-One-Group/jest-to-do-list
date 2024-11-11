@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { OutputNoneCheckedSection, clickCheckBoxCallback } from "./output_none_checked_section.component";
+import { OutputNoneCheckedSection } from "./output_none_checked_section.component";
 
 describe("OutputNoneCheckedSection Test", () => {
   const dummyTodoArray = [
@@ -60,8 +60,8 @@ describe("OutputNoneCheckedSection Test", () => {
       <OutputNoneCheckedSection todos={dummyTodoArray} dbCallback={jest.fn()} />
     );
 
-    // 각 항목을 찾기 위해, 각 항목이 div 태그로 감싸져 있다고 가정합니다.
-    const todoItems = screen.getAllByText(/DummyTitle/i); // 제목으로 항목을 찾습니다.
+    // 각 배열 수대로 랜더링이 되어있는지 확인
+    const todoItems = screen.getAllByText(/DummyTitle/i);
     expect(todoItems).toHaveLength(10);
   });
 
@@ -73,7 +73,7 @@ describe("OutputNoneCheckedSection Test", () => {
     );
 
     const checkboxes = screen.getAllByRole("checkbox");
-    fireEvent.click(checkboxes[1]); // 두 번째 항목의 체크박스를 클릭
+    fireEvent.click(checkboxes[1]);
 
     // 콜백 함수가 한 번 호출되었는지 확인
     expect(mockCallback).toHaveBeenCalledTimes(1);
