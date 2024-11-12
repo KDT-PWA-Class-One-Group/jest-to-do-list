@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import formatDate from "../utils/formatDate"
 const CheckedItem = ({item, onChangeCheck}) => {
 
   const [isChecked, setIsChecked]= useState(true)
@@ -12,7 +13,7 @@ const CheckedItem = ({item, onChangeCheck}) => {
   <div id={item.id}>
     <input type="checkbox" checked={isChecked} onChange={handleInput}/>
     <p>{item.title}</p>
-    <p>{item.updated_at}</p>
+    <p>{formatDate(new Date(item.updated_at))}</p>
   </div>);
 }
 

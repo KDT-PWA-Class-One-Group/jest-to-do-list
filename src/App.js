@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-import database from "./data/data.json";
+import React from "react";
 
 // components
 import Input from "./components/Input";
@@ -9,7 +7,7 @@ import { OutputNoneCheckedSection } from "./components/output_none_checked_secti
 import CheckedList from "./components/checkedItem";
 
 const App = () => {
-  const [todos, handleNewTodo, handleCheckboxToggle, setTodos] = useTodos();
+  const [todos, handleNewTodo, setTodos] = useTodos();
 
   return (
     <div className="App">

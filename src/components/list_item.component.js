@@ -1,6 +1,6 @@
 export const ListedItem = ({ todo, callback }) => {
   return (
-    <div style={{ display: "flex" }}>
+    <div>
       <input
         type="checkbox"
         checked={todo.checked}

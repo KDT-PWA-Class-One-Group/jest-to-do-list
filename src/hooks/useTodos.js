@@ -16,17 +16,5 @@ export default () => {
     setTodos((prevTodos) => [...prevTodos, { ...newTodo, id: Date.now() }]);
   };
 
-  /**
-   * 할 일의 체크박스 상태를 토글합니다.
-   * @param {number} id - 토글할 할 일의 ID
-   */
-  const handleCheckboxToggle = (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
-    );
-  };
-
-  return [todos, handleNewTodo, handleCheckboxToggle, setTodos];
+  return [todos, handleNewTodo, setTodos];
 };
