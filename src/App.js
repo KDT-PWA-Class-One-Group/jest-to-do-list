@@ -15,7 +15,7 @@ const App = () => {
     <div className="App">
       <Input onSubmit={handleNewTodo} />
       <OutputNoneCheckedSection todos={todos} setTodos={setTodos} />
-      <CheckedList data={todos} changeData={handleNewTodo} />
+      <CheckedList data={todos} changeData={setTodos} />
     </div>
   );
 };

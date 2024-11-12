@@ -24,10 +24,8 @@ export const clickCheckBoxCallback = (id, setTodos) => {
     const newArr = [...rev];
     const findItem = newArr.find((value) => value.id === id);
 
-    findItem.checked = !findItem.checked;
+    findItem.checked = true
     findItem.updated_at = new Date().toISOString();
-
-    console.dir(newArr);
 
     return newArr;
   });

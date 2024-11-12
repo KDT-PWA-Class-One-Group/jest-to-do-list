@@ -93,7 +93,7 @@ describe("OutputNoneCheckedSection Test", () => {
 
     // 배열이 성공적으로 변경되었는지 확인
     const updatedItem = todos.find((todo) => todo.id === 2);
-    expect(updatedItem.check).toBe(true); 
-    expect(updatedItem.update_at).not.toBeNull();
+    expect(updatedItem.checked).toBe(true); 
+    expect(updatedItem.updated_at).not.toBeNull();
   });
 });
