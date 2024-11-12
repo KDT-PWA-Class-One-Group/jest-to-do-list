@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-const CheckedItem = (item, onChangeCheck) => {
+import React, {useState} from "react";
+const CheckedItem = ({item, onChangeCheck}) => {
 
   const [isChecked, setIsChecked]= useState(true)
 
   const handleInput = () => {
-    setIsChecked(false)
-    // item.checked = false
+    onChangeCheck(item.id);
+    setIsChecked(false);
   }
 
   return(
@@ -18,15 +18,15 @@ const CheckedItem = (item, onChangeCheck) => {
 
 // export default CheckedItem;
 
-const CheckedList = (data, changeData) => {
+const CheckedList = ({data, changeData}) => {
 
   const handleButton = () => {
-
+    changeData(data.filter(item => item.checked === false));
   }
 
   const toggleCheckbox = (id) => {
     const rest = data.filter(e => e.id !== id);
-    const target = data.fild(e => e.id === id);
+    const target = data.find(e => e.id === id);
     target.checked = !target.checked;
 
     const newArr = [...rest, target];
@@ -37,7 +37,7 @@ const CheckedList = (data, changeData) => {
   return(
     <>
     {data.filter(item => item.checked ===true).map(item=> {
-      return(<CheckedItem item={item} onChangeCheck={toggleCheckbox}/>)
+      return(<CheckedItem key={item.id} item={item} onChangeCheck={() => toggleCheckbox(item.id)}/>)
       })
     }
       <button onClick={handleButton} />
