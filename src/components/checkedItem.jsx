@@ -17,8 +17,6 @@ const CheckedItem = ({item, onChangeCheck}) => {
   </div>);
 }
 
-// export default CheckedItem;
-
 const CheckedList = ({data, changeData}) => {
 
   const handleButton = () => {
