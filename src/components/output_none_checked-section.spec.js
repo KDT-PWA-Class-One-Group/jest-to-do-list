@@ -7,51 +7,61 @@ import {
 describe("OutputNoneCheckedSection Test", () => {
   const dummyTodoArray = [
     {
+      id: 1,
       title: "DummyTitle 1",
       check: false,
       create_at: "1990-10-10",
     },
     {
+      id: 2,
       title: "DummyTitle 2",
       check: false,
       create_at: "1991-11-11",
     },
     {
+      id: 3,
       title: "DummyTitle 3",
       check: false,
       create_at: "1992-12-12",
     },
     {
+      id: 4,
       title: "DummyTitle 4",
       check: false,
       create_at: "1993-01-01",
     },
     {
+      id: 5,
       title: "DummyTitle 5",
       check: false,
       create_at: "1994-02-02",
     },
     {
+      id: 6,
       title: "DummyTitle 6",
       check: false,
       create_at: "1995-03-03",
     },
     {
+      id: 7,
       title: "DummyTitle 7",
       check: false,
       create_at: "1996-04-04",
     },
     {
+      id: 8,
       title: "DummyTitle 8",
       check: false,
       create_at: "1997-05-05",
     },
     {
+      id: 9,
       title: "DummyTitle 9",
       check: false,
       create_at: "1998-06-06",
     },
     {
+      id: 10,
       title: "DummyTitle 10",
       check: false,
       create_at: "1999-07-07",
@@ -69,25 +79,21 @@ describe("OutputNoneCheckedSection Test", () => {
   });
 
   it("should update the 'check' and 'update_at' properties of the correct todo", () => {
+    // 상태 배열을 깊은 복사
     let todos = JSON.parse(JSON.stringify(dummyTodoArray));
 
-    // updateFn 정의: 기존 상태를 받아 특정 요소를 수정한 후 반환하는 함수
-    const updateFn = (currentTodos) => {
-      const newTodos = [...currentTodos];
-      newTodos[1].check = !newTodos[1].check; // 'check' 상태 반전
-      newTodos[1].update_at = new Date().toISOString(); // 'update_at' 업데이트
-      return newTodos;
-    };
+    const mockSetTodos = (updateFn) => {
 
-    const mockSetTodos = () => {
+      // updateFn은 기존의 상태를 기반으로 새로운 상태를 반환하는 함수
       todos = updateFn(todos);
     };
 
-    // index = 1의 아이템을 업데이트하려고 호출
-    clickCheckBoxCallback(1, mockSetTodos);
+    // clickCheckBoxCallback 호출, id가 2인 아이템을 업데이트
+    clickCheckBoxCallback(2, mockSetTodos);
 
-    // 새로운 배열에서 해당 index의 아이템이 변경되었는지 확인
-    expect(todos[1].check).toBe(true); 
-    expect(todos[1].update_at).not.toBeNull();
+    // 배열이 성공적으로 변경되었는지 확인
+    const updatedItem = todos.find((todo) => todo.id === 2);
+    expect(updatedItem.check).toBe(true); 
+    expect(updatedItem.update_at).not.toBeNull();
   });
 });
