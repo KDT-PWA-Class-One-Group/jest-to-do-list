@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import formatDate from '../utils/formatDate';
 
 const Input = ({ onSubmit }) => {
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!content.trim()) return;
+    if (!title.trim()) return;
 
+    const currentDate = formatDate(new Date());
     const newTodo = {
-      id: Date.now(),
-      content: content.trim(),
+      title: title.trim(),
       checkbox: false,
-      created_at: formatDate(new Date()),
-      updated_at: formatDate(new Date()),
+      created_at: currentDate,
+      updated_at: currentDate,
     };
 
     onSubmit(newTodo);
-    setContent('');
+    setTitle('');
   };
 
   return (
@@ -25,8 +25,8 @@ const Input = ({ onSubmit }) => {
       <div className="flex gap-2">
         <input
           type="text"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="할 일을 입력하세요"
           className="flex-1 p-2 border rounded"
           data-testid="todo-input"
