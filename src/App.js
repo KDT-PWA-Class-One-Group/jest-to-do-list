@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Input from './components/Input';
+import useTodos from './hooks/useTodos';
 
-function App() {
+const App = () => {
+  const [todos, handleNewTodo, handleCheckboxToggle] = useTodos();
+  console.log(todos);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Input onSubmit={handleNewTodo} />
+      <table>
+        <thead>
+          <tr>
+            <th>완료 여부</th>
+            <th>할 일</th>
+            <th>생성 날짜</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todos.map((todo) => (
+            <tr key={todo.id}>
+              <td>
+                <input
+                  type="checked"
+                  checked={todo.checked}
+                  onChange={() => handleCheckboxToggle(todo.id)}
+                />
+              </td>
+              <td>{todo.title}</td>
+              <td>{todo.created_at}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
 export default App;
