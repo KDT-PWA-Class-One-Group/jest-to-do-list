@@ -85,7 +85,6 @@ describe("완료 목록 렌더테스트", () => {
     const checkbox = screen.getByRole("checkbox");
 
     expect(checkbox.checked).toBe(true);
-
     fireEvent.click(checkbox);
 
     expect(checkbox.checked).toBe(false);
