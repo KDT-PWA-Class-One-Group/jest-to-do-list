@@ -1,38 +1,21 @@
-import React from 'react';
-import Input from './components/Input';
-import useTodos from './hooks/useTodos';
+import React, { useState } from "react";
+
+import database from "./data/data.json";
+
+// components
+import Input from "./components/Input";
+import useTodos from "./hooks/useTodos";
+import { OutputNoneCheckedSection } from "./components/output_none_checked_section.component";
+import CheckedList from "./components/checkedItem";
 
 const App = () => {
-  const [todos, handleNewTodo, handleCheckboxToggle] = useTodos();
-  console.log(todos);
+  const [todos, handleNewTodo, handleCheckboxToggle, setTodos] = useTodos();
 
   return (
     <div className="App">
       <Input onSubmit={handleNewTodo} />
-      <table>
-        <thead>
-          <tr>
-            <th>완료 여부</th>
-            <th>할 일</th>
-            <th>생성 날짜</th>
-          </tr>
-        </thead>
-        <tbody>
-          {todos.map((todo) => (
-            <tr key={todo.id}>
-              <td>
-                <input
-                  type="checked"
-                  checked={todo.checked}
-                  onChange={() => handleCheckboxToggle(todo.id)}
-                />
-              </td>
-              <td>{todo.title}</td>
-              <td>{todo.created_at}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <OutputNoneCheckedSection todos={todos} setTodos={setTodos} />
+      <CheckedList data={todos} changeData={handleNewTodo} />
     </div>
   );
 };

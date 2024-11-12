@@ -4,7 +4,7 @@ export const OutputNoneCheckedSection = ({ todos, setTodos }) => {
   return (
     <>
       {todos
-        .filter((value) => !value.check)
+        .filter((value) => !value.checked)
         .map((value, idx) => (
           <ListedItem
             key={idx}
@@ -24,8 +24,10 @@ export const clickCheckBoxCallback = (id, setTodos) => {
     const newArr = [...rev];
     const findItem = newArr.find((value) => value.id === id);
 
-    findItem.check = !findItem.check;
-    findItem.update_at = new Date().toISOString();
+    findItem.checked = !findItem.checked;
+    findItem.updated_at = new Date().toISOString();
+
+    console.dir(newArr);
 
     return newArr;
   });

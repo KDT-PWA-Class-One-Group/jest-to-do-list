@@ -12,7 +12,7 @@ const CheckedItem = ({item, onChangeCheck}) => {
   <div id={item.id}>
     <input type="checkbox" checked={isChecked} onChange={handleInput}/>
     <p>{item.title}</p>
-    <p>{item.update_at}</p>
+    <p>{item.updated_at}</p>
   </div>);
 }
 
@@ -40,7 +40,7 @@ const CheckedList = ({data, changeData}) => {
       return(<CheckedItem key={item.id} item={item} onChangeCheck={() => toggleCheckbox(item.id)}/>)
       })
     }
-      <button onClick={handleButton} />
+      <button onClick={handleButton}>완료된 항목 지우기</button>
     </>
     );
 }

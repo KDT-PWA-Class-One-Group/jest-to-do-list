@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import data from '../data/data.json';
+import { useState } from "react";
+import data from "../data/data.json";
 
 /**
  * 할 일 목록 상태 및 관리 함수들을 제공합니다.
@@ -13,10 +13,7 @@ export default () => {
    * @param {Object} newTodo - 추가할 할 일 객체
    */
   const handleNewTodo = (newTodo) => {
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      { ...newTodo, id: Date.now() },
-    ]);
+    setTodos((prevTodos) => [...prevTodos, { ...newTodo, id: Date.now() }]);
   };
 
   /**
@@ -31,5 +28,5 @@ export default () => {
     );
   };
 
-  return [todos, handleNewTodo, handleCheckboxToggle];
+  return [todos, handleNewTodo, handleCheckboxToggle, setTodos];
 };
