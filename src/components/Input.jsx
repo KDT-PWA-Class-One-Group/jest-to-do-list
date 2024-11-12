@@ -3,29 +3,20 @@ import React, { useState } from 'react';
 const Input = ({ onSubmit }) => {
   const [content, setContent] = useState('');
 
-  // 날짜 포맷팅 함수 (YYYY/MM/DD 형식)
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}/${month}/${day}`;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!content.trim()) return;
 
-    const currentDate = new Date();
     const newTodo = {
       id: Date.now(),
       content: content.trim(),
       checkbox: false,
-      created_at: formatDate(currentDate),  // 포맷된 날짜 저장
-      updated_at: formatDate(currentDate),  // 포맷된 날짜 저장
+      created_at: new Date(),
+      updated_at: new Date()
     };
 
     onSubmit(newTodo);
-    setContent(''); // 입력 필드 초기화
+    setContent('');
   };
 
   return (
