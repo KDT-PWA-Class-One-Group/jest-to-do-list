@@ -1,14 +1,23 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('할 일을 입력하세요 텍스트가 렌더링된다', () => {
+test('초기 할 일이 렌더링된다', () => {
   render(<App />);
-  const inputElement = screen.getByPlaceholderText(/할 일을 입력하세요/i);  // input의 placeholder 텍스트를 찾음
-  expect(inputElement).toBeInTheDocument();
+
+  const initialTodo = screen.getByText('기존 할 일 1');
+  expect(initialTodo).toBeInTheDocument();
 });
 
-test('추가 버튼이 렌더링된다', () => {
+test('새로운 할 일이 추가된다', () => {
   render(<App />);
-  const buttonElement = screen.getByRole('button', { name: /추가/i });  // 버튼 텍스트를 찾음
-  expect(buttonElement).toBeInTheDocument();
+
+  const inputElement = screen.getByTestId('todo-input');
+  const submitButton = screen.getByTestId('todo-submit');
+
+  fireEvent.change(inputElement, { target: { value: '새로운 할 일' } });
+  fireEvent.click(submitButton);
+
+  const newTodo = screen.getByText('새로운 할 일');
+  expect(newTodo).toBeInTheDocument();
 });
