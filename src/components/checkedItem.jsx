@@ -26,13 +26,11 @@ const CheckedList = ({data, changeData}) => {
   }
 
   const toggleCheckbox = (id) => {
-    const rest = data.filter(e => e.id !== id);
-    const target = data.find(e => e.id === id);
+    const origin = [...data]
+    const target = origin.find(e => e.id === id);
     target.checked = !target.checked;
 
-    const newArr = [...rest, target];
-
-    changeData(newArr)
+    changeData(origin);
   }
 
   return(
