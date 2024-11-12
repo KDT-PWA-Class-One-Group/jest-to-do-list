@@ -26,7 +26,7 @@ export default () => {
   const handleCheckboxToggle = (id) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, checkbox: !todo.checkbox } : todo
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo
       )
     );
   };

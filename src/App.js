@@ -22,8 +22,8 @@ const App = () => {
             <tr key={todo.id}>
               <td>
                 <input
-                  type="checkbox"
-                  checked={todo.checkbox}
+                  type="checked"
+                  checked={todo.checked}
                   onChange={() => handleCheckboxToggle(todo.id)}
                 />
               </td>

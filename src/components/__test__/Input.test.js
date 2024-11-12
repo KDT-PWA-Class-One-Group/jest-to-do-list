@@ -16,7 +16,7 @@ test('입력 후 onSubmit을 통해 새로운 할 일을 추가한다', () => {
   expect(handleSubmit).toHaveBeenCalledWith(
     expect.objectContaining({
       title: '테스트 할 일',
-      checkbox: false,
+      checked: false,
       created_at: expect.any(String),
       updated_at: expect.any(String),
     })

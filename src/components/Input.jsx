@@ -11,7 +11,7 @@ const Input = ({ onSubmit }) => {
     const currentDate = formatDate(new Date());
     const newTodo = {
       title: title.trim(),
-      checkbox: false,
+      checked: false,
       created_at: currentDate,
       updated_at: currentDate,
     };

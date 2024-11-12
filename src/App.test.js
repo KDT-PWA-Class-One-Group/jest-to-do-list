@@ -5,7 +5,7 @@ import App from './App';
 test('초기 할 일이 렌더링된다', () => {
   render(<App />);
 
-  const initialTodo = screen.getByText('기존 할 일 1');
+  const initialTodo = screen.getByText('I am a dummy data 1');
   expect(initialTodo).toBeInTheDocument();
 });
 
