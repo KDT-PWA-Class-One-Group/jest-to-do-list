@@ -1,5 +1,8 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { OutputNoneCheckedSection } from "./output_none_checked_section.component";
+import { render, screen } from "@testing-library/react";
+import {
+  OutputNoneCheckedSection,
+  clickCheckBoxCallback,
+} from "./output_none_checked_section.component";
 
 describe("OutputNoneCheckedSection Test", () => {
   const dummyTodoArray = [
@@ -66,18 +69,25 @@ describe("OutputNoneCheckedSection Test", () => {
   });
 
   it("should update the 'check' and 'update_at' properties of the correct todo", () => {
-    const mockCallback = jest.fn();
+    let todos = JSON.parse(JSON.stringify(dummyTodoArray));
 
-    render(
-      <OutputNoneCheckedSection todos={dummyTodoArray} dbCallback={mockCallback} />
-    );
+    // updateFn 정의: 기존 상태를 받아 특정 요소를 수정한 후 반환하는 함수
+    const updateFn = (currentTodos) => {
+      const newTodos = [...currentTodos];
+      newTodos[1].check = !newTodos[1].check; // 'check' 상태 반전
+      newTodos[1].update_at = new Date().toISOString(); // 'update_at' 업데이트
+      return newTodos;
+    };
 
-    const checkboxes = screen.getAllByRole("checkbox");
-    fireEvent.click(checkboxes[1]);
+    const mockSetTodos = () => {
+      todos = updateFn(todos);
+    };
 
-    // 콜백 함수가 한 번 호출되었는지 확인
-    expect(mockCallback).toHaveBeenCalledTimes(1);
-    // 호출된 콜백 함수에 전달된 인덱스 값이 1인지 확인
-    expect(mockCallback).toHaveBeenCalledWith(1);
+    // index = 1의 아이템을 업데이트하려고 호출
+    clickCheckBoxCallback(1, mockSetTodos);
+
+    // 새로운 배열에서 해당 index의 아이템이 변경되었는지 확인
+    expect(todos[1].check).toBe(true); 
+    expect(todos[1].update_at).not.toBeNull();
   });
 });

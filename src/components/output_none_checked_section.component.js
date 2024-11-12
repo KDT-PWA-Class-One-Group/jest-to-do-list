@@ -1,21 +1,28 @@
 import { ListedItem } from "./list_item.component";
 
-export const OutputNoneCheckedSection = ({ todos, dbCallback }) => {
+export const OutputNoneCheckedSection = ({ todos, setTodos }) => {
   return (
     <>
       {todos.map((value, idx) => (
         <ListedItem
           key={idx}
           todo={value}
-          callback={() => clickCheckBoxCallback(idx, dbCallback)}
+          callback={() => clickCheckBoxCallback(idx, setTodos)}
         ></ListedItem>
       ))}
     </>
   );
 };
 
-export const clickCheckBoxCallback = (index, dbCallback) => {
+export const clickCheckBoxCallback = (index, setTodos) => {
   // index를 이용해, 배열에 접근
   // TODO: dbCallback 함수는 테이블을 조작하는 함수, 2개의 DB에서 삭제 및 삽입 함수를 구현한다.
-  dbCallback(index);
+
+  setTodos((rev) => {
+    const newArr = [...rev];
+    newArr[index].check = !newArr[index].check;
+    newArr[index].update_at = new Date().toISOString();
+
+    return newArr;
+  });
 };
