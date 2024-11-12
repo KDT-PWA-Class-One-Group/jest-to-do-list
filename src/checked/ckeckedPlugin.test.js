@@ -1,6 +1,9 @@
+import dummyData from "../data/data.json";
+
 describe("플러그인 테스트", () => {
   class Item {
-    constructor(title, checked, create_at, updated_at) {
+    constructor(id, title, checked, create_at, updated_at) {
+      this.id = id;
       this.title = title;
       this.checked = true;
       this.created_at = new Date("1994-11-09");
@@ -32,7 +35,7 @@ describe("플러그인 테스트", () => {
 
     toSaveCurrentData = () => {
       return Array.from(this.database);
-    };
+    }
 
     get size() {
       return this.database.size;
@@ -84,4 +87,10 @@ describe("플러그인 테스트", () => {
 
     expect(data.length).toBe(3);
   });
+
+  test("update 테스트", ()=>{
+    const database = new CheckedPlugin([]);
+
+    // database.update()
+  })
 });
