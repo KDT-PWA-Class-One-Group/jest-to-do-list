@@ -17,14 +17,21 @@ describe("플러그인 테스트", () => {
       this.database.add(data);
     };
 
-    listDelete = (data) => {
-      if (this.database.has(data)) {
-        this.database.delete(data);
+    listDeleteById = (id) => {
+      for (const e of this.database) {
+        if (e.id === id) {
+          this.database.delete(e);
+          break;
+        }
       }
     };
 
     deleteAll = () => {
       this.database.clear();
+    };
+
+    toSaveCurrentData = () => {
+      return Array.from(this.database);
     };
 
     get size() {
@@ -48,7 +55,7 @@ describe("플러그인 테스트", () => {
     }
     expect(database.size).toBe(3);
 
-    database.listDelete(Array.from(database.database)[0]);
+    database.listDeleteById(Array.from(database.database)[0].id);
 
     // then
     expect(database.size).toBe(2);
@@ -63,5 +70,18 @@ describe("플러그인 테스트", () => {
     database.deleteAll();
 
     expect(database.size).toBe(0);
+  });
+
+  test("데이터 추출", () => {
+    const database = new CheckedPlugin([]);
+
+    for (let i = 0; i < 3; i++) {
+      const dummy = new Item();
+      database.listAdd(dummy);
+    }
+
+    const data = database.toSaveCurrentData();
+
+    expect(data.length).toBe(3);
   });
 });
